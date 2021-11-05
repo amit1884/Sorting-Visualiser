@@ -1,88 +1,78 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react';
+import './Bar.css';
 
-function Bar({index, length, changeArray }) {
+function Bars({ index, length, colorKey, changeArray }){
+	const [len, setLen] = useState(length);
 
-    const [len,setLen]=useState(length)
-    let barStyle={
-        background:'#3d5af1',
-        height:length,
-        marginTop:200-length
-    }
-   
-    let textStyle={
+    const colors = ['#3d5af1', '#ff304f', '#83e85a'];
 
-        width:length,
-        top:Math.floor(length/2)-10,
-        left:-Math.floor(length/2)+10,
-        
-    }
+	console.log(length);
+	useEffect(() => {
+		setLen(length);
+	}, [length]);
 
-    let quantityBtnStyle={
-        top:length-9,
+	let barStyle = {
+		background: colors[colorKey],
+		height: length,
+		marginTop: 200 - length,
+	};
 
-    }
-    const handleChange=(e)=>{
-        let val=e.target.value
-        if(val==='')
-        {
-            setLen(0)
-            changeArray(index,0)
-        }
-        else
-        {
-            val=parseInt(val)
-            if(val>200){
-                setLen(200)
-                changeArray(index,200)
-            }
-            else{
-                setLen(val)
-                changeArray(index,val)
-            }
-        }
+	let textStyle = {
+		width: length,
+		top: Math.floor(length / 2) - 10,
+		left: -Math.floor(length / 2) + 11,
+	};
+
+    let quantityBtnStyle = {
+        top: length - 10
     }
 
+	const handleChange = (e) => {
+		let val = e.target.value;
+		if (val === '') {
+			setLen(0);
+			changeArray(index, 0);
+		} else {
+			val = parseInt(val);
+			if (val > 200) {
+				setLen(200);
+				changeArray(index, 200);
+			} else {
+				setLen(val);
+				changeArray(index, val);
+			}
+		}
+	};
 
-    const increament=()=>{
-       let val=len+1;
-        if(val>200){
-            setLen(200)
-            changeArray(index,200)
-        }
-        else{
-            setLen(val)
-            changeArray(index,val)
-        }
-        changeArray(index,len+1)
+    const increment = () => {
+        setLen(len + 1);
+        changeArray(index, len + 1);
     }
-    const decreament=()=>{
-        let val=len-1;
-        if(val<0)
-        {
-            setLen(0)
-            changeArray(index,0)
-        }
-        else
-        {
-            setLen(len-1);
-            changeArray(index,len-1)
-        }
+
+    const decrement = () => {
+        setLen(len - 1);
+        changeArray(index, len - 1);
     }
-    return (
-        <div className="bar" style={barStyle}>
-           <input type="number" className="text"
-            style={textStyle} 
-            value={len} onChange={handleChange}/>
-           <div className="quantityNav">
-               <div className="quantity-btn quantity-up" style={quantityBtnStyle} onClick={increament}>
+
+	return (
+		<div className='bar' style={barStyle}>
+			<input
+				type='number'
+				className='text'
+				style={textStyle}
+				value={len}
+				onChange={handleChange}
+			/>
+			<div className='quatityNav'>
+				<div className='quantity-btn quantity-up' style={quantityBtnStyle} onClick={increment}>
                     +
-               </div>
-               <div className="quantity-btn quantity-down" style={quantityBtnStyle} onClick={decreament}>
+                </div>
+				<div className='quantity-btn quantity-down' style={quantityBtnStyle} onClick={decrement}>
                     -
-               </div>
-           </div>
-        </div>
-    )
-}
+                </div>
+			</div>
+		</div>
+	);
+};
 
-export default Bar
+export default Bars;
