@@ -1,0 +1,54 @@
+.bar{
+    border-radius: 5px 5px 0 0;
+    width:25px;
+    margin:10px;
+    margin-right: 10px;
+}
+.text{
+    position: relative;
+    border:none;
+    background: transparent;
+    text-align: center;
+    transform: rotate(-90deg);
+    outline: none;
+}
+
+.frame{
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:200px;
+    margin:2em 0;
+    padding: 0;
+}
+.card{
+    border-radius: 2em;
+    background:gray;
+    padding:0 1em;
+}
+.quantity-btn{
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    background-color: darkcyan;
+    margin:1px;
+}
+.quantity-btn:hover{
+    opacity:0.5;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+
+-webkit-appearance: none;
+margin:0;
+}
+
+input[type="number"]{
+    -moz-appearance: textfield;
+}
